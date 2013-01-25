@@ -1,0 +1,18 @@
+# Travis-CI Build
+# see travis-ci.org for details
+
+language: java
+
+jdk:
+  - oraclejdk6
+      
+# Make sure mono is installed
+install:
+ - sudo apt-get update -qq
+ - sudo apt-get install -qq python-yaml
+ - git clone https://github.com/pcmanus/ccm.git
+ - cd ccm
+ - sudo ./setup.py install
+ - cd ..
+ - ccm create test -v 1.2.0
+ - ccm remove test
