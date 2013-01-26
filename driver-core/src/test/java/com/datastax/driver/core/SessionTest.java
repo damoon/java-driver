@@ -5,8 +5,6 @@ import java.util.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import com.datastax.driver.core.exceptions.*;
-
 /**
  * Simple test of the Sessions methods against a one node cluster.
  */

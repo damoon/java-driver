@@ -280,7 +280,7 @@ public class Session {
         }
 
         public void onUp(Host host) {
-            HostConnectionPool previous = addHost(host);;
+            HostConnectionPool previous = addHost(host);
             loadBalancer.onUp(host);
 
             // This should not be necessary but it's harmless
@@ -313,7 +313,7 @@ public class Session {
         }
 
         public void onAdd(Host host) {
-            HostConnectionPool previous = addHost(host);;
+            HostConnectionPool previous = addHost(host);
             loadBalancer.onAdd(host);
 
             // This should not be necessary, especially since the host is

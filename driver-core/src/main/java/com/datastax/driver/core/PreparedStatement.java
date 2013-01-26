@@ -36,7 +36,7 @@ public class PreparedStatement {
     static PreparedStatement fromMessage(ResultMessage.Prepared msg, Metadata clusterMetadata) {
         switch (msg.kind) {
             case PREPARED:
-                ResultMessage.Prepared pmsg = (ResultMessage.Prepared)msg;
+                ResultMessage.Prepared pmsg = msg;
                 ColumnDefinitions.Definition[] defs = new ColumnDefinitions.Definition[pmsg.metadata.names.size()];
                 if (defs.length == 0)
                     return new PreparedStatement(new ColumnDefinitions(defs), pmsg.statementId, null);

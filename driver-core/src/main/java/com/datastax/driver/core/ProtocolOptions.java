@@ -32,7 +32,7 @@ public class ProtocolOptions {
         public String toString() {
             return protocolName;
         }
-    };
+    }
 
     /**
      * The default port for Cassandra native binary protocol: 9042.

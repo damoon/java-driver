@@ -7,11 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 
 import com.google.common.util.concurrent.Uninterruptibles;
 
-import com.datastax.driver.core.policies.*;
 import com.datastax.driver.core.exceptions.AuthenticationException;
 import com.datastax.driver.core.exceptions.DriverInternalError;
 
@@ -300,9 +298,9 @@ class Connection extends org.apache.cassandra.transport.Connection
     }
 
     // Cruft needed because we reuse server side classes, but we don't care about it
-    public void validateNewMessage(Message.Type type) {};
-    public void applyStateTransition(Message.Type requestType, Message.Type responseType) {};
-    public ClientState clientState() { return null; };
+    public void validateNewMessage(Message.Type type) {}
+    public void applyStateTransition(Message.Type requestType, Message.Type responseType) {}
+    public ClientState clientState() { return null; }
 
     public static class Factory {
 

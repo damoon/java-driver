@@ -220,7 +220,7 @@ public class Delete extends BuiltStatement {
             if (columnNames != null)
                 throw new IllegalStateException(String.format("Some columns (%s) have already been selected.", columnNames));
 
-            return (Builder)this;
+            return this;
         }
 
         /**

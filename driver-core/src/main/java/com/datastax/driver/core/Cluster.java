@@ -13,7 +13,6 @@ import org.apache.cassandra.transport.Event;
 import org.apache.cassandra.transport.Message;
 import org.apache.cassandra.transport.messages.EventMessage;
 import org.apache.cassandra.transport.messages.PrepareMessage;
-import org.apache.cassandra.transport.messages.QueryMessage;
 
 import com.datastax.driver.core.exceptions.*;
 import com.datastax.driver.core.policies.*;

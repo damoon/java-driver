@@ -87,7 +87,7 @@ public class UUIDsTest {
         int nbPerTstamp = 10;
 
         for (int i = 0; i < nbTstamp; i++) {
-            long tstamp = (long)random.nextInt();
+            long tstamp = random.nextInt();
             for (int j = 0; j < nbPerTstamp; j++) {
                 assertWithin(new UUID(UUIDs.makeMSB(UUIDs.fromUnixTimestamp(tstamp)), random.nextLong()), UUIDs.startOf(tstamp), UUIDs.endOf(tstamp));
             }

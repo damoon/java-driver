@@ -1,6 +1,5 @@
 package com.datastax.driver.core;
 
-import java.util.BitSet;
 import java.util.concurrent.atomic.AtomicLongArray;
 
 /**

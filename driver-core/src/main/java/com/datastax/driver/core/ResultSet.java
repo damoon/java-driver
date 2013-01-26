@@ -3,7 +3,6 @@ package com.datastax.driver.core;
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.util.*;
-import java.util.concurrent.TimeoutException;
 
 import org.apache.cassandra.transport.messages.ResultMessage;
 

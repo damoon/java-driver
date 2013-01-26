@@ -29,7 +29,7 @@ public interface RetryPolicy {
         /**
          * The type of retry decisions.
          */
-        public static enum Type { RETRY, RETHROW, IGNORE };
+        public static enum Type { RETRY, RETHROW, IGNORE }
 
         private final Type type;
         private final ConsistencyLevel retryCL;

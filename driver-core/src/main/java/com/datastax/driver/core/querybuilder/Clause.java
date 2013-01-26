@@ -1,10 +1,6 @@
 package com.datastax.driver.core.querybuilder;
 
-import java.net.InetAddress;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public abstract class Clause extends Utils.Appendeable {
 
@@ -12,7 +8,7 @@ public abstract class Clause extends Utils.Appendeable {
 
     private Clause(String name) {
         this.name = name;
-    };
+    }
 
     String name() {
         return name;

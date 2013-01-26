@@ -1,6 +1,5 @@
 package com.datastax.driver.core.querybuilder;
 
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -247,7 +246,7 @@ public class Select extends BuiltStatement {
             if (columnNames != null)
                 throw new IllegalStateException(String.format("Some columns (%s) have already been selected.", columnNames));
 
-            return (Builder)this;
+            return this;
         }
 
         /**
@@ -262,7 +261,7 @@ public class Select extends BuiltStatement {
                 throw new IllegalStateException(String.format("Some columns (%s) have already been selected.", columnNames));
 
             columnNames = COUNT_ALL;
-            return (Builder)this;
+            return this;
         }
 
         /**

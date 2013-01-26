@@ -1,6 +1,5 @@
 package com.datastax.driver.core.policies;
 
-import java.nio.ByteBuffer;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.ConcurrentHashMap;
