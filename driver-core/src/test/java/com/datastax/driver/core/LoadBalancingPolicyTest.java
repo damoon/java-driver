@@ -79,21 +79,30 @@ public class LoadBalancingPolicyTest {
     @Test
     public void roundRobinTest() throws Throwable {
 
+    	System.out.println(System.currentTimeMillis()/1000 + " started roundRobinTest");
+    	
         Cluster.Builder builder = Cluster.builder().withLoadBalancingPolicy(new RoundRobinPolicy());
+    	System.out.println(System.currentTimeMillis()/1000 + " buildCluster");
         CCMBridge.CCMCluster c = CCMBridge.buildCluster(2, builder);
         createSchema(c.session);
         try {
 
+        	System.out.println(System.currentTimeMillis()/1000 + " init");
             init(c, 12);
+        	System.out.println(System.currentTimeMillis()/1000 + " query");
             query(c, 12);
 
             assertQueried(CCMBridge.IP_PREFIX + "1", 6);
             assertQueried(CCMBridge.IP_PREFIX + "2", 6);
 
+        	System.out.println(System.currentTimeMillis()/1000 + " resetCoordinators");        	
             resetCoordinators();
+        	System.out.println(System.currentTimeMillis()/1000 + " bootstrap node3");    
             c.bridge.bootstrapNode(3);
+        	System.out.println(System.currentTimeMillis()/1000 + " waitFor node3");    
             waitFor(CCMBridge.IP_PREFIX + "3", c.cluster, 20);
 
+        	System.out.println(System.currentTimeMillis()/1000 + " query");
             query(c, 12);
 
             assertQueried(CCMBridge.IP_PREFIX + "1", 4);
@@ -111,12 +120,18 @@ public class LoadBalancingPolicyTest {
     @Test
     public void DCAwareRoundRobinTest() throws Throwable {
 
+    	System.out.println(System.currentTimeMillis()/1000 + " started DCAwareRoundRobinTest");
+    	
         Cluster.Builder builder = Cluster.builder().withLoadBalancingPolicy(new DCAwareRoundRobinPolicy("dc2"));
+
+    	System.out.println(System.currentTimeMillis()/1000 + " build Cluster");
         CCMBridge.CCMCluster c = CCMBridge.buildCluster(2, 2, builder);
         createMultiDCSchema(c.session);
         try {
 
+        	System.out.println(System.currentTimeMillis()/1000 + " init");
             init(c, 12);
+        	System.out.println(System.currentTimeMillis()/1000 + " query");
             query(c, 12);
 
             assertQueried(CCMBridge.IP_PREFIX + "1", 0);
@@ -134,21 +149,26 @@ public class LoadBalancingPolicyTest {
 
     @Test
     public void tokenAwareTest() throws Throwable {
+    	System.out.println(System.currentTimeMillis()/1000 + " tokenAwareTest");
         tokenAwareTest(false);
     }
 
     @Test
     public void tokenAwarePreparedTest() throws Throwable {
+    	System.out.println(System.currentTimeMillis()/1000 + " tokenAwarePreparedTest");
         tokenAwareTest(true);
     }
 
     public void tokenAwareTest(boolean usePrepared) throws Throwable {
         Cluster.Builder builder = Cluster.builder().withLoadBalancingPolicy(new TokenAwarePolicy(new RoundRobinPolicy()));
+    	System.out.println(System.currentTimeMillis()/1000 + " buildCluster");
         CCMBridge.CCMCluster c = CCMBridge.buildCluster(2, builder);
         createSchema(c.session);
         try {
 
+        	System.out.println(System.currentTimeMillis()/1000 + " init");
             init(c, 12);
+        	System.out.println(System.currentTimeMillis()/1000 + " query");
             query(c, 12);
 
             // Not the best test ever, we should use OPP and check we do it the
@@ -157,10 +177,14 @@ public class LoadBalancingPolicyTest {
             assertQueried(CCMBridge.IP_PREFIX + "1", 0);
             assertQueried(CCMBridge.IP_PREFIX + "2", 12);
 
+        	System.out.println(System.currentTimeMillis()/1000 + " resetCoordinators");
             resetCoordinators();
+        	System.out.println(System.currentTimeMillis()/1000 + " bootstrap node3");
             c.bridge.bootstrapNode(3);
+        	System.out.println(System.currentTimeMillis()/1000 + " waitFor node3");
             waitFor(CCMBridge.IP_PREFIX + "3", c.cluster, 20);
 
+        	System.out.println(System.currentTimeMillis()/1000 + " query");
             query(c, 12, usePrepared);
 
             // We should still be hitting only one node
